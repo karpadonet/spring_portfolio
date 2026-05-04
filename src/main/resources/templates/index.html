@@ -6,12 +6,32 @@
 </head>
 <body class="bg-light">
 <div class="container py-5">
-    <div class="card shadow">
+    <!-- Profile Section -->
+    <div class="card shadow border-0">
         <div class="card-body text-center">
-            <h1 class="display-4" th:text="${profile.name}">Name</h1>
-            <p class="lead" th:text="${profile.role}">Role</p>
+            <h1 class="display-4 fw-bold" th:text="${profile.name}">Name</h1>
+            <p class="lead text-primary" th:text="${profile.role}">Role</p>
             <hr>
             <p th:text="${profile.bio}">Bio goes here...</p>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+    <div class="mt-5">
+        <h3 class="mb-4 text-center">My Projects</h3>
+        <div class="row">
+            <!-- The loop pulls each 'project' from the 'projects' list -->
+            <div class="col-md-6 mb-4" th:each="project : ${projects}">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <!-- Changed .name to .title to match your Project.java field -->
+                        <h5 class="card-title fw-bold" th:text="${project.title}">Project Title</h5>
+                        <p class="card-text text-muted" th:text="${project.description}">Description</p>
+                        <p><strong>Tech Stack:</strong> <span class="badge bg-secondary" th:text="${project.techStack}">Java</span></p>
+                        <a th:href="${project.githubLink}" class="btn btn-primary btn-sm" target="_blank">View on GitHub</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
